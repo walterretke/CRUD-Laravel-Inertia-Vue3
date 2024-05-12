@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index () {
-        sleep(2);
+        sleep(1);
         $posts = Post::all();
         return inertia('Home', compact('posts'));
     }
