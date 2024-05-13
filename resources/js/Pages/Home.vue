@@ -1,4 +1,5 @@
 <template>
+    <Head title="Home" />
     <div>
      <div class="px-4 sm:px-6 lg:px-8 w-full">
       <div class="sm:flex sm:items-center">
@@ -57,7 +58,7 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, Head } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import LayoutMenu from '@/Layouts/LayoutMenu.vue';

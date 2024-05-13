@@ -28,7 +28,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/create', [PostController::class, 'create'])->name('dashboard.create');
+    Route::post('/dashboard/store', [PostController::class, 'store'])->name('dashboard.store');
 });
+
