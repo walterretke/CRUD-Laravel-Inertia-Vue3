@@ -5,13 +5,12 @@ import { defineProps } from "vue";
 import { Link, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    posts: Array,
-    errors: Object
+    post: Object,  // Alterado de Array para Object
 });
 
 const form = useForm({
-    title: "",
-    content: "",
+    title: props.post.title,
+    content: props.post.content,
 });
 </script>
 
@@ -19,7 +18,7 @@ const form = useForm({
     <AppLayout title="Novo Post">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Novo Post
+                Editar Post
             </h2>
         </template>
 
@@ -28,7 +27,7 @@ const form = useForm({
                 <div
                     class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-3"
                 >
-                    <form @submit.prevent="form.post(route('dashboard.store'))">
+                    <form @submit.prevent="form.put(route('dashboard.update', {id: props.post.id}))">
                         <div class="mb-6">
                             <label
                                 for="title"
@@ -42,27 +41,24 @@ const form = useForm({
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required
                             />
-                            <div v-if="errors.title" class="text-red-600"> {{ errors.title }}</div>
                         </div>
                         <div class="mb-6">
                             <label
-                                for="title"
+                                for="content"
                                 class="block mb-2 text-sm font-medium text-gray-900"
-                                >Título</label
+                                >Conteúdo</label
                             >
                             <textarea
-                                type="textarea"
-                                id="title"
+                                id="content"
                                 v-model="form.content"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required
                             />
-                            <div v-if="errors.content" class="text-red-600"> {{ errors.content }}</div>
                         </div>
                         <button
                             class="bg-blue-500 py-2 px-3 rounded-md shadow-sm hover:bg-blue-700 text-white font-bold mt-5"
                         >
-                            Criar postagem
+                            Editar postagem
                         </button>
                     </form>
                 </div>
@@ -70,3 +66,4 @@ const form = useForm({
         </div>
     </AppLayout>
 </template>
+
